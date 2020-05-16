@@ -1,5 +1,6 @@
 package com.example.todo_diary;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.CustomViewHo
 
     //실행될 때
     @Override
-    public void onBindViewHolder(@NonNull final DiaryAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final DiaryAdapter.CustomViewHolder holder, final int position) {
         holder.picture.setImageResource(arrayList.get(position).getPicture());
         holder.title.setText(arrayList.get(position).getTitle());
         holder.date.setText(arrayList.get(position).getDate());
@@ -45,6 +47,35 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.CustomViewHo
             public void onClick(View v){
                 String name = holder.title.getText().toString();
                 Toast.makeText(v.getContext(), name, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //길게 누르면 다이어로그가 뜨면서 삭제할건지 물어봄
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View v) {
+                String name = holder.title.getText().toString();
+                Toast.makeText(v.getContext(), name, Toast.LENGTH_SHORT).show();
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("[ "+name+" ]를 삭제하시겠어요?");
+                builder.setMessage("삭제하시려면 '네'를 선택해주세요.");
+                builder.setPositiveButton("네",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                arrayList.remove(position);
+                                notifyItemRemoved(position);
+                                notifyItemRangeChanged(position, arrayList.size());
+                            }
+                        });
+                builder.setNegativeButton("아니오",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                builder.show();
+                return false;
             }
         });
     }
