@@ -62,7 +62,7 @@ public class ScheduleManagementMainActivity extends AppCompatActivity {
 
                 //다이얼로그 생성
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("삭제하시겠어요?").setMessage("삭제하시려면 '네'를 선택해주세요.");
+                builder.setTitle("[ "+list.get(position)+" ]를 삭제하시겠어요?").setMessage("삭제하시려면 '네'를 선택해주세요.");
 
                 //아니요를 누르면 다이얼로그가 닫히고
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener(){
