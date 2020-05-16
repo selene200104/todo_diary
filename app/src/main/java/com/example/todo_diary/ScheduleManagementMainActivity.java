@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
@@ -46,11 +47,22 @@ public class ScheduleManagementMainActivity extends AppCompatActivity {
         thisDay = (TextView) findViewById(R.id.thisDay);
         thisDay.setText(today);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list) ;
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list) ;
 
         listview = (ListView) findViewById(R.id.scheduleListView) ;
         listview.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         listview.setAdapter(adapter);
+
+        //길게 클릭하면 해당 값이 삭제된다.
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                list.remove(position);
+                adapter.notifyDataSetChanged();
+                return true;
+            }
+        });
 
         //메뉴 이미지를 누르면 메인 액티비티로 이동
         ImageButton Home = (ImageButton)findViewById(R.id.menuButton);
@@ -87,5 +99,4 @@ public class ScheduleManagementMainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
