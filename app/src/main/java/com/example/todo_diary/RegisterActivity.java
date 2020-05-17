@@ -3,13 +3,17 @@ package com.example.todo_diary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    String registerEmailID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, loginActivity.class);
                 startActivity(intent);
 
+                SharedPreferences login = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
+
+                // 회원가입에서 등록된 아이디를 login SharedPreferences에 저장
+                EditText emailRegister = (EditText) findViewById(R.id.emailRegister) ;
+                registerEmailID = login.getString("registerEmailID",emailRegister.getText().toString());
+                Toast.makeText(RegisterActivity.this, "등록된 아이디 : "+registerEmailID, Toast.LENGTH_SHORT).show();
             }
         });
 
