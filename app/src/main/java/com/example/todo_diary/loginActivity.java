@@ -34,34 +34,32 @@ public class loginActivity extends AppCompatActivity {
         registerPassword = login.getString("registerPassword",registerPassword);
         //Toast.makeText(loginActivity.this, "비밀번호 : "+registerPassword, Toast.LENGTH_SHORT).show();
 
-        //아이디와 비밀번호 칸이 비어있지 않을 때
-        if(id != null && password != null) {
-            loginButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //아이디와 비밀번호 칸이 비어있지 않을 때
+                if(!id.getText().toString().equals("") && !password.getText().toString().equals("")) {
                     //아이디와 비밀번호에 입력된 값이 미리 지정되어있는 값과 같으면 로그인이 됌.
                     if (id.getText().toString().equals(registerEmailID) && password.getText().toString().equals(registerPassword)) {
-                        SharedPreferences login = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
-                        //아이디가 'juhee'이고 비밀번호가 '951215'일 경우 SharedPreferences.Editor를 통해
-                        //login(SharedPreferences)의 loginId와 loginPwd에 값을 저장해 줌
-                        SharedPreferences.Editor autoLogin = login.edit();
-                        autoLogin.putString("inputId", id.getText().toString());
-                        autoLogin.putString("inputPwd", password.getText().toString());
-                        //commit()을 통해 값 저장(하지 않으면 저장이 되지 않음)
-                        autoLogin.commit();
                         //Toast를 통해 환영메세지를 띄움
                         Toast.makeText(loginActivity.this, id.getText().toString() + "님 환영합니다.", Toast.LENGTH_SHORT).show();
                         //로그인 액티비티에서 메인 액티비티로 넘어감
                         Intent intent = new Intent(loginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
-                    }else{
+                    } else {
                         //만약 아이디 비밀번호가 맞지 않으면 토스트 메세지를 띄움
                         Toast.makeText(loginActivity.this, "아이디와 비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
+                } else if (id.getText().toString().equals("") && !password.getText().toString().equals("")) {
+                    Toast.makeText(loginActivity.this, "아이디를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else if (!id.getText().toString().equals("") && password.getText().toString().equals("")) {
+                    Toast.makeText(loginActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(loginActivity.this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
+            }
+        });
 
         //등록버튼을 누르면 회원가입 액티비티로 이동
         Button goRegisterButton = (Button)findViewById(R.id.goRegisterButton);
