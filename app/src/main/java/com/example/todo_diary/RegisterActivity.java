@@ -43,16 +43,20 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 SharedPreferences login = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = login.edit();
 
                 // 회원가입에서 등록된 아이디를 login SharedPreferences에 저장
                 EditText emailRegister = (EditText) findViewById(R.id.emailRegister) ;
-                registerEmailID = login.getString("registerEmailID",emailRegister.getText().toString());
-                Toast.makeText(RegisterActivity.this, "등록된 아이디 : "+registerEmailID, Toast.LENGTH_SHORT).show();
+                editor.putString("registerEmailID", emailRegister.getText().toString());
+                editor.commit();
+                Toast.makeText(RegisterActivity.this, "이메일 주소 : "+emailRegister.getText().toString(), Toast.LENGTH_SHORT).show();
 
                 // 회원가입에서 등록된 비밀번호를 login SharedPreferences에 저장
                 EditText passwordRegister = (EditText) findViewById(R.id.passwordRegister) ;
-                registerPassword = login.getString("registerPassword",passwordRegister.getText().toString());
-                Toast.makeText(RegisterActivity.this, "등록된 비밀번호 : "+registerPassword, Toast.LENGTH_SHORT).show();
+                editor.putString("registerPassword", passwordRegister.getText().toString());
+                editor.commit();
+                Toast.makeText(RegisterActivity.this, "비밀번호 : "+passwordRegister.getText().toString(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
