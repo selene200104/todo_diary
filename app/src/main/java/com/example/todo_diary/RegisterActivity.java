@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    String registerEmailID;
+    String registerEmailID, registerPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
                 EditText emailRegister = (EditText) findViewById(R.id.emailRegister) ;
                 registerEmailID = login.getString("registerEmailID",emailRegister.getText().toString());
                 Toast.makeText(RegisterActivity.this, "등록된 아이디 : "+registerEmailID, Toast.LENGTH_SHORT).show();
+
+                // 회원가입에서 등록된 비밀번호를 login SharedPreferences에 저장
+                EditText passwordRegister = (EditText) findViewById(R.id.passwordRegister) ;
+                registerPassword = login.getString("registerPassword",passwordRegister.getText().toString());
+                Toast.makeText(RegisterActivity.this, "등록된 비밀번호 : "+registerPassword, Toast.LENGTH_SHORT).show();
             }
         });
 
