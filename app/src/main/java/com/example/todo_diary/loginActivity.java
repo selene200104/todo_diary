@@ -50,6 +50,9 @@ public class loginActivity extends AppCompatActivity {
                         Intent intent = new Intent(loginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
+                    }else{
+                        //만약 아이디 비밀번호가 맞지 않으면 토스트 메세지를 띄움
+                        Toast.makeText(loginActivity.this, "아이디와 비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
