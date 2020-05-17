@@ -34,11 +34,11 @@ public class loginActivity extends AppCompatActivity {
             loginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //아이디와 비밀번호에 입력된 값이 미리 지정되어있는 값과 같으면 로그인이 된다.
+                    //아이디와 비밀번호에 입력된 값이 미리 지정되어있는 값과 같으면 로그인이 됌.
                     if (id.getText().toString().equals("juhee@naver.com") && password.getText().toString().equals("951215")) {
                         SharedPreferences login = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
                         //아이디가 'juhee'이고 비밀번호가 '951215'일 경우 SharedPreferences.Editor를 통해
-                        //auto의 loginId와 loginPwd에 값을 저장해 줍니다.
+                        //login(SharedPreferences)의 loginId와 loginPwd에 값을 저장해 줌
                         SharedPreferences.Editor autoLogin = login.edit();
                         autoLogin.putString("inputId", id.getText().toString());
                         autoLogin.putString("inputPwd", password.getText().toString());
