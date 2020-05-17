@@ -66,18 +66,6 @@ public class loginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        /*//로그인을 누르면 앱 메인 액티비티로 이동
-        Button loginButton = (Button)findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // 액티비티 전환 코드
-                Intent intent = new Intent(loginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        }); */
     }
 /*
     @Override
