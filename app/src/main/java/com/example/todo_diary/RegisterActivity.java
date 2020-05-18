@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, loginActivity.class);
                 startActivity(intent);
 
-                SharedPreferences login = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
+                SharedPreferences login = getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = login.edit();
 
                 // 회원가입에서 등록된 아이디를 login SharedPreferences에 저장
