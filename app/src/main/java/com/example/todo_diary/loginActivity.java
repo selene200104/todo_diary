@@ -26,11 +26,11 @@ public class loginActivity extends AppCompatActivity {
         loginButton = (Button)findViewById(R.id.loginButton);
 
         //SharedPreferences의 객체 선언
-        SharedPreferences login = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
+        SharedPreferences login = getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE);
 
         registerEmailID = login.getString("registerEmailID",registerEmailID);
         //Toast.makeText(loginActivity.this, "이메일 주소 : "+registerEmailID, Toast.LENGTH_SHORT).show();
-
+        
         registerPassword = login.getString("registerPassword",registerPassword);
         //Toast.makeText(loginActivity.this, "비밀번호 : "+registerPassword, Toast.LENGTH_SHORT).show();
 
