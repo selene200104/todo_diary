@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +16,19 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView profileNickname;
+    String nickName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        profileNickname = (TextView)findViewById(R.id.profileNickname);
+
+        SharedPreferences login = getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE);
+        nickName = login.getString("registerNickName",nickName);
+        profileNickname.setText(nickName);
 
         ImageButton logoutButton = (ImageButton)findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {

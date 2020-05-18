@@ -57,6 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
                 editor.commit();
                 Toast.makeText(RegisterActivity.this, "비밀번호 : "+passwordRegister.getText().toString(), Toast.LENGTH_SHORT).show();
 
+                // 회원가입에서 등록된 닉네임을 login SharedPreferences에 저장
+                EditText nickName = (EditText) findViewById(R.id.textSetNickName) ;
+                editor.putString("registerNickName", nickName.getText().toString());
+                editor.commit();
+                Toast.makeText(RegisterActivity.this, "비밀번호 : "+passwordRegister.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
