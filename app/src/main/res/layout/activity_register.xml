@@ -42,13 +42,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        >
 
         <TextView
             android:id="@+id/textEmailAddress"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="20dp"
             android:text=" 이메일 주소 "
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +70,7 @@
             tools:layout_editor_absoluteX="0dp"
             tools:targetApi="o" />
 
+        <!--
         <EditText
             android:id="@+id/registerCode"
             android:layout_width="224dp"
@@ -94,7 +95,7 @@
             android:text="인증번호 보내기"
             app:layout_constraintBottom_toTopOf="@+id/textInputPassword"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailRegister" />
+            app:layout_constraintTop_toBottomOf="@+id/emailRegister" /> -->
 
         <TextView
             android:id="@+id/textInputPassword"
@@ -107,7 +108,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerCode" />
+            app:layout_constraintTop_toBottomOf="@+id/emailRegister" />
 
         <EditText
             android:id="@+id/passwordRegister"
@@ -124,6 +125,7 @@
             android:importantForAutofill="no"
             tools:targetApi="o" />
 
+        <!--
         <EditText
             android:id="@+id/checkPasswordRegister"
             android:layout_width="match_parent"
@@ -137,19 +139,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordRegister"
             android:importantForAutofill="no"
-            tools:targetApi="o" />
+            tools:targetApi="o" />-->
 
         <TextView
             android:id="@+id/textRegisterProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginTop="60dp"
             android:text="프로필 등록하기"
             android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkPasswordRegister" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordRegister"
+            app:layout_constraintVertical_bias="0.117" />
 
         <ImageButton
             android:id="@+id/addProfileButton"
@@ -173,10 +178,10 @@
             android:layout_margin="10dp"
             android:layout_marginTop="8dp"
             android:text="눌러서 이미지를 바꿔주세요"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintHorizontal_bias="0.099"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addProfileButton"
             app:layout_constraintVertical_bias="0.0" />
@@ -185,29 +190,29 @@
             android:id="@+id/profileNickname"
             android:layout_width="108dp"
             android:layout_height="28dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="108dp"
             android:gravity="center"
             android:text="닉네임 설정"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toEndOf="@+id/addProfileButton"
-            app:layout_constraintTop_toBottomOf="@+id/checkPasswordRegister" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordRegister" />
 
         <EditText
             android:id="@+id/textSetNickName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:gravity="center"
             android:hint=" 닉네임 입력하기 "
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:singleLine="true"
             android:textSize="20sp"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintHorizontal_bias="0.896"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileNickname"
             app:layout_constraintVertical_bias="0.0"
