@@ -39,6 +39,7 @@ public class loginActivity extends AppCompatActivity {
         loginId = auto.getString("inputId",null);
         loginPassword = auto.getString("inputPassword",null);
 
+        //입력된 정보가 등록된 id및 비밀번호와 같다면 자동 로그인이 됌
         if(loginId != null && loginPassword != null) {
             if(loginId.equals(registerEmailID) && loginPassword.equals(registerPassword)) {
                 Toast.makeText(loginActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
