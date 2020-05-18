@@ -30,7 +30,7 @@ public class loginActivity extends AppCompatActivity {
 
         registerEmailID = login.getString("registerEmailID",registerEmailID);
         //Toast.makeText(loginActivity.this, "이메일 주소 : "+registerEmailID, Toast.LENGTH_SHORT).show();
-        
+
         registerPassword = login.getString("registerPassword",registerPassword);
         //Toast.makeText(loginActivity.this, "비밀번호 : "+registerPassword, Toast.LENGTH_SHORT).show();
 
