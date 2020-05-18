@@ -15,6 +15,7 @@ public class loginActivity extends AppCompatActivity {
 
     EditText id, password;
     Button loginButton;
+    CheckBox autoLoginCheck;
     String loginId, loginPassword,registerEmailID,registerPassword;
 
     @Override
@@ -24,14 +25,28 @@ public class loginActivity extends AppCompatActivity {
 
         id = (EditText)findViewById(R.id.emailAddress);
         password = (EditText)findViewById(R.id.password);
+        autoLoginCheck = (CheckBox)findViewById(R.id.checkBox);
         loginButton = (Button)findViewById(R.id.loginButton);
 
         //SharedPreferences의 객체 선언
         SharedPreferences login = getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE);
+        SharedPreferences auto = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
 
         //등록된 아이디를 login 파일에 저장함
         registerEmailID = login.getString("registerEmailID",registerEmailID);
         registerPassword = login.getString("registerPassword",registerPassword);
+
+        loginId = auto.getString("inputId",null);
+        loginPassword = auto.getString("inputPassword",null);
+
+        if(loginId != null && loginPassword != null) {
+            if(loginId.equals(registerEmailID) && loginPassword.equals(registerPassword)) {
+                Toast.makeText(loginActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +55,14 @@ public class loginActivity extends AppCompatActivity {
                 if(!id.getText().toString().equals("") && !password.getText().toString().equals("")) {
                     //아이디와 비밀번호에 입력된 값이 미리 지정되어있는 값과 같으면 로그인이 됌.
                     if (id.getText().toString().equals(registerEmailID) && password.getText().toString().equals(registerPassword)) {
+                        if(autoLoginCheck.isChecked()) {
+                            SharedPreferences auto = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
+                            SharedPreferences.Editor autoLogin = auto.edit();
+                            autoLogin.putString("inputId", id.getText().toString());
+                            autoLogin.putString("inputPassword", password.getText().toString());
+                            //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
+                            autoLogin.commit();
+                        }
                         //Toast를 통해 환영메세지를 띄움
                         Toast.makeText(loginActivity.this, id.getText().toString() + "님 환영합니다.", Toast.LENGTH_SHORT).show();
                         //로그인 액티비티에서 메인 액티비티로 넘어감
