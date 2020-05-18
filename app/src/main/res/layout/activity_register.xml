@@ -41,8 +41,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textEmailAddress"
@@ -116,13 +115,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint=" 비밀번호를 입력해주세요 "
-            android:textSize="20sp"
-            android:singleLine="true"
             android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:singleLine="true"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputPassword"
-            android:importantForAutofill="no"
             tools:targetApi="o" />
 
         <!--
@@ -167,7 +166,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/profile_picture"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.061"
+            app:layout_constraintHorizontal_bias="0.109"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRegisterProfile" />
 
@@ -181,7 +180,7 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintHorizontal_bias="0.106"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addProfileButton"
             app:layout_constraintVertical_bias="0.0" />
@@ -190,12 +189,12 @@
             android:id="@+id/profileNickname"
             android:layout_width="108dp"
             android:layout_height="28dp"
-            android:layout_marginTop="108dp"
+            android:layout_marginTop="112dp"
             android:gravity="center"
             android:text="닉네임 설정"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toEndOf="@+id/addProfileButton"
             app:layout_constraintTop_toBottomOf="@+id/passwordRegister" />
 
