@@ -52,6 +52,8 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.CustomViewHo
 
                 //리사이클러뷰를 클릭하면 다이어리확인액티비티로 이동
                 Intent intent = new Intent(v.getContext(),CheckDiaryActivity.class);
+                intent.putExtra("diaryDate", arrayList.get(position).getDate());
+                Log.d(TAG,"diaryDate값 " + arrayList.get(position).getDate());
                 intent.putExtra("diaryTitle", arrayList.get(position).getTitle());
                 Log.d(TAG,"diaryTitle값 " + arrayList.get(position).getTitle());
                 v.getContext().startActivity(intent);
