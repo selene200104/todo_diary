@@ -47,7 +47,7 @@
         android:id="@+id/textSort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
+        android:layout_marginStart="276dp"
         android:layout_marginTop="16dp"
         android:text="정렬하기"
         android:textStyle="bold"
@@ -73,10 +73,10 @@
         app:layout_constraintTop_toTopOf="@+id/titleBar"
         app:layout_constraintVertical_bias="0.986" />-->
 
-       <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/diaryListView"
-        android:layout_width="393dp"
-        android:layout_height="533dp"
+        android:layout_width="388dp"
+        android:layout_height="492dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
