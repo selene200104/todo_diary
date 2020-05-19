@@ -83,5 +83,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //메뉴 이미지를 누르면 메인 액티비티로 이동
+        ImageButton Home = (ImageButton)findViewById(R.id.menuButton);
+        Home.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // 액티비티 전환 코드
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
