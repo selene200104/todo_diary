@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -28,6 +30,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -129,24 +135,29 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 Intent intent = new Intent(WriteDiaryActivity.this, DiaryMainActivity.class);
 
                 // 날짜 값을 String 값으로 그대로 전달.
-                TextView diaryDate = (TextView) findViewById(R.id.today) ;
-                intent.putExtra("diaryDate", diaryDate.getText().toString()) ;
+                TextView diaryDate = (TextView) findViewById(R.id.today);
+                intent.putExtra("diaryDate", diaryDate.getText().toString());
 
                 // 다이어리 제목 입력 값을 String 값으로 그대로 전달.
-                EditText diaryTitle = (EditText) findViewById(R.id.diaryTitle) ;
-                intent.putExtra("diaryTitle", diaryTitle.getText().toString()) ;
+                EditText diaryTitle = (EditText) findViewById(R.id.diaryTitle);
+                intent.putExtra("diaryTitle", diaryTitle.getText().toString());
 
                 // 장소 입력 값을 String 값으로 그대로 전달.
-                EditText spot = (EditText) findViewById(R.id.textSpot) ;
-                intent.putExtra("spot", spot.getText().toString()) ;
+                EditText spot = (EditText) findViewById(R.id.textSpot);
+                intent.putExtra("spot", spot.getText().toString());
 
                 // 다이어리 내용 값을 String 값으로 그대로 전달.
-                EditText diaryStory = (EditText) findViewById(R.id.diaryStory) ;
-                intent.putExtra("diaryStory", diaryStory.getText().toString()) ;
+                EditText diaryStory = (EditText) findViewById(R.id.diaryStory);
+                intent.putExtra("diaryStory", diaryStory.getText().toString());
+
+                SharedPreferences diary = getSharedPreferences("diary", AppCompatActivity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = diary.edit();
+
+
 
                 // 다이어리 앨범 이미지를 전달
                 //Uri uri = (Uri) data.getData();
-               // intent.putExtra("uri", uri.toString());
+                // intent.putExtra("uri", uri.toString());
                 /*BitmapDrawable drawable = (BitmapDrawable) inputPicture.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -164,6 +175,33 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 byte[] byteArray = stream.toByteArray();
                 intent.putExtra("image",byteArray); */
 
+                JSONObject jsonObject = new JSONObject();
+                JSONArray jsonArray = new JSONArray();
+
+                try {
+                    jsonObject.put("diaryDate", diaryDate.getText().toString());
+                    jsonObject.put("diaryTitle", diaryTitle.getText().toString());
+                    jsonObject.put("spot", spot.getText().toString());
+                    jsonObject.put("diaryStory", diaryStory.getText().toString());
+
+                    jsonArray.put(jsonObject);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String jsonData = jsonArray.toString();
+
+                //SharedPreferences diaryList = getSharedPreferences("jsonData", MODE_PRIVATE);
+                //SharedPreferences.Editor editor = diaryList.edit();
+
+                //editor.putString("jsonData", jsonData);
+                //editor.apply();
+
+                saveArrayList(jsonData);
+                //loadArrayList(DiaryMainActivity.class);
+            //}
+
                 //DiaryMainActivity.arrayList = new ArrayList<>();
                 diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString(), diaryStory.getText().toString());
                 DiaryMainActivity.arrayList.add(0,diaryItem);
@@ -171,6 +209,16 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    //EditText에서 입력한 값을 SharedPreferences에 저장
+    private void saveArrayList(String jsonData){
+        SharedPreferences diaryList = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = diaryList.edit();
+
+        editor.putString("jsonData", jsonData);
+        editor.commit();
     }
 
     private String getRealPathFromURI(Uri contentUri) {
