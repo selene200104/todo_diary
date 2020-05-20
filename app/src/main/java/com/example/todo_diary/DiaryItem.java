@@ -9,13 +9,15 @@ public class DiaryItem {
     private String title;
     private String date;
     private String spot;
+    private String diaryStory;
 
 
-    public DiaryItem(int picture,String title,String date,String spot) {
+    public DiaryItem(int picture,String title,String date,String spot, String diaryStory) {
         this.picture = picture;
         this.title = title;
         this.date = date;
         this.spot = spot;
+        this.diaryStory = diaryStory;
     }
 
     public int getPicture() {
@@ -48,5 +50,13 @@ public class DiaryItem {
 
     public void setSpot(String spot) {
         this.spot = spot;
+    }
+
+    public String getDiaryStory() {
+        return diaryStory;
+    }
+
+    public void setDiaryStory(String diaryStory) {
+        this.diaryStory = diaryStory;
     }
 }

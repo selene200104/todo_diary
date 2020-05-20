@@ -58,6 +58,8 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.CustomViewHo
                 Log.d(TAG,"diaryTitle값 " + arrayList.get(position).getTitle());
                 intent.putExtra("spot", arrayList.get(position).getSpot());
                 Log.d(TAG,"spot값 " + arrayList.get(position).getSpot());
+                intent.putExtra("diaryStory", arrayList.get(position).getDiaryStory());
+                Log.d(TAG,"diaryStory값 " + arrayList.get(position).getDiaryStory());
                 v.getContext().startActivity(intent);
             }
         });

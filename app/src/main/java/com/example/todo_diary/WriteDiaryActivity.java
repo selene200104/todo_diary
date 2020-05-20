@@ -165,7 +165,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 intent.putExtra("image",byteArray); */
 
                 //DiaryMainActivity.arrayList = new ArrayList<>();
-                diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString());
+                diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString(), diaryStory.getText().toString());
                 DiaryMainActivity.arrayList.add(0,diaryItem);
 
                 startActivity(intent);
