@@ -165,9 +165,8 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 intent.putExtra("image",byteArray); */
 
                 //DiaryMainActivity.arrayList = new ArrayList<>();
-                diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString());
+                diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString());
                 DiaryMainActivity.arrayList.add(0,diaryItem);
-                Log.d(TAG,"WriteDiaryActivity에서 넘겨주는 값" + diaryItem);
 
                 startActivity(intent);
             }

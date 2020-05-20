@@ -8,12 +8,14 @@ public class DiaryItem {
     private int picture;
     private String title;
     private String date;
+    private String spot;
 
 
-    public DiaryItem(int picture,String title,String date) {
+    public DiaryItem(int picture,String title,String date,String spot) {
         this.picture = picture;
         this.title = title;
         this.date = date;
+        this.spot = spot;
     }
 
     public int getPicture() {
@@ -38,5 +40,13 @@ public class DiaryItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSpot() {
+        return spot;
+    }
+
+    public void setSpot(String spot) {
+        this.spot = spot;
     }
 }
