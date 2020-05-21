@@ -29,8 +29,8 @@ public class loginActivity extends AppCompatActivity {
         loginButton = (Button)findViewById(R.id.loginButton);
 
         //SharedPreferences의 객체 선언
-        SharedPreferences login = getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE);
-        SharedPreferences auto = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
+        SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences auto = getSharedPreferences("auto", MODE_PRIVATE);
 
         //등록된 아이디를 login 파일에 저장함
         registerEmailID = login.getString("registerEmailID",registerEmailID);

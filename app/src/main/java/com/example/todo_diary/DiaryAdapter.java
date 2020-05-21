@@ -2,6 +2,8 @@ package com.example.todo_diary;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import static java.nio.file.Files.delete;
 
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.CustomViewHolder> {
 
+    private static final String TAG = "ScheduleMainActivity";
     private ArrayList<DiaryItem> arrayList;
 
     public DiaryAdapter(ArrayList<DiaryItem> arrayList) {
@@ -47,6 +51,18 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.CustomViewHo
             public void onClick(View v){
                 String name = holder.title.getText().toString();
                 Toast.makeText(v.getContext(), name, Toast.LENGTH_SHORT).show();
+
+                //리사이클러뷰를 클릭하면 다이어리확인액티비티로 이동
+                Intent intent = new Intent(v.getContext(),CheckDiaryActivity.class);
+                intent.putExtra("diaryDate", arrayList.get(position).getDate());
+                Log.d(TAG,"diaryDate값 " + arrayList.get(position).getDate());
+                intent.putExtra("diaryTitle", arrayList.get(position).getTitle());
+                Log.d(TAG,"diaryTitle값 " + arrayList.get(position).getTitle());
+                intent.putExtra("spot", arrayList.get(position).getSpot());
+                Log.d(TAG,"spot값 " + arrayList.get(position).getSpot());
+                intent.putExtra("diaryStory", arrayList.get(position).getDiaryStory());
+                Log.d(TAG,"diaryStory값 " + arrayList.get(position).getDiaryStory());
+                v.getContext().startActivity(intent);
             }
         });
 

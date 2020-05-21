@@ -47,7 +47,7 @@
         android:id="@+id/today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="96dp"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -82,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
         android:hint=" 제목 "
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,26 +108,28 @@
         android:id="@+id/textSpot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="332dp"
         android:text=" @ 지정된 위치 없음 "
+        android:textColor="#B2B2B2"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diaryImage" />
+        app:layout_constraintTop_toTopOf="@+id/titleBar" />
 
     <TextView
         android:id="@+id/diaryStory"
-        android:layout_width="match_parent"
-        android:layout_height="306dp"
+        android:layout_width="390dp"
+        android:layout_height="260dp"
         android:layout_margin="10dp"
         android:paddingTop="15dp"
+        android:paddingStart="30dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSpot"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.86" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
