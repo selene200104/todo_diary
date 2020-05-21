@@ -39,6 +39,7 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class WriteDiaryActivity extends AppCompatActivity {
 
@@ -52,6 +53,9 @@ public class WriteDiaryActivity extends AppCompatActivity {
     private DiaryAdapter diaryAdapter;
     private LinearLayoutManager linearLayoutManager;
     private DiaryItem diaryItem;
+    ArrayList<String> array = new ArrayList<>();
+    static String diaryDate,diaryTitle,spot,diaryText,jsonData;
+    int picture;
 
     @SuppressLint("SimpleDateFormat")
     // 날짜를 나타냇 포맷을 정함 ( 원하는대로 형태 변경 가능 )
@@ -124,6 +128,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
             }
         });
 
+        //SharedPreferences diary = getSharedPreferences("diary", AppCompatActivity.MODE_PRIVATE);
 
         //체크이미지를 누르면 다이어리 확인 액티비티로 이동
         ImageButton doneButton = (ImageButton)findViewById(R.id.doneButton);
@@ -150,10 +155,7 @@ public class WriteDiaryActivity extends AppCompatActivity {
                 EditText diaryStory = (EditText) findViewById(R.id.diaryStory);
                 intent.putExtra("diaryStory", diaryStory.getText().toString());
 
-                SharedPreferences diary = getSharedPreferences("diary", AppCompatActivity.MODE_PRIVATE);
-                SharedPreferences.Editor editor = diary.edit();
-
-
+                //SharedPreferences.Editor editor = diary.edit();
 
                 // 다이어리 앨범 이미지를 전달
                 //Uri uri = (Uri) data.getData();
@@ -190,36 +192,79 @@ public class WriteDiaryActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                String jsonData = jsonArray.toString();
+                jsonData = jsonArray.toString();
 
-                //SharedPreferences diaryList = getSharedPreferences("jsonData", MODE_PRIVATE);
-                //SharedPreferences.Editor editor = diaryList.edit();
+                SharedPreferences diaryList = getSharedPreferences("jsonData", MODE_PRIVATE);
+                SharedPreferences.Editor editor = diaryList.edit();
+                editor.putString("jsonData", jsonData);
+                editor.apply();
 
-                //editor.putString("jsonData", jsonData);
-                //editor.apply();
+                //loadArrayList(jsonData);
+                //DiaryMainActivity.diaryAdapter.notifyDataSetChanged();
+                //Log.d("배열값은 과연? : ", jsonData);
 
-                saveArrayList(jsonData);
-                //loadArrayList(DiaryMainActivity.class);
+                //String diaryFile = diaryList.getString("Diary", "");
+                //DiaryMainActivity.arrayList.add(diaryItem);
+
+                //saveArrayList(jsonData);
             //}
-
                 //DiaryMainActivity.arrayList = new ArrayList<>();
-                diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString(), diaryStory.getText().toString());
-                DiaryMainActivity.arrayList.add(0,diaryItem);
+                //diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString(), diaryStory.getText().toString());
+                //DiaryMainActivity.arrayList.add(0,diaryItem);
 
                 startActivity(intent);
             }
         });
+
+        /*DiaryMainActivity.arrayList.add(diaryItem);
+
+        DiaryMainActivity.recyclerView = (RecyclerView) findViewById(R.id.diaryListView);
+        DiaryMainActivity.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DiaryMainActivity.diaryAdapter = new DiaryAdapter(DiaryMainActivity.arrayList);
+        DiaryMainActivity.recyclerView.setAdapter(diaryAdapter);
+        diaryAdapter.notifyDataSetChanged();*/
     }
 
+    //SharedPreferences에 저장한 것을 listView에 입력
+    /*
+    void loadArrayList(String jsonData){
+        SharedPreferences diaryList = getSharedPreferences("jsonData", MODE_PRIVATE);
+        String strJson = diaryList.getString("jsonData", "fail");
+        if (!strJson.equals("fail")) {
+            try {
+                JSONArray response = new JSONArray(strJson);
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject jsonobject = response.getJSONObject(i);
+                    diaryDate = jsonobject.getString("diaryDate");
+                    diaryTitle = jsonobject.getString("diaryTitle");
+                    spot = jsonobject.getString("spot");
+                    diaryText = jsonobject.getString("diaryStory");
+                    DiaryMainActivity.arrayList.add(new DiaryItem(picture, diaryDate, diaryTitle, spot, diaryText));
+                }
+                diaryAdapter = new DiaryAdapter(DiaryMainActivity.arrayList);
+                DiaryMainActivity.recyclerView.setAdapter(diaryAdapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            DiaryMainActivity.diaryAdapter.notifyDataSetChanged();
+        }
+    }*/
 
-    //EditText에서 입력한 값을 SharedPreferences에 저장
-    private void saveArrayList(String jsonData){
-        SharedPreferences diaryList = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = diaryList.edit();
+    /*
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TextView diaryDate = (TextView) findViewById(R.id.today);
+        EditText diaryTitle = (EditText) findViewById(R.id.diaryTitle);
+        EditText spot = (EditText) findViewById(R.id.textSpot);
+        EditText diaryStory = (EditText) findViewById(R.id.diaryStory);
 
-        editor.putString("jsonData", jsonData);
-        editor.commit();
-    }
+        DiaryMainActivity.arrayList = new ArrayList<>();
+        DiaryMainActivity.diaryItem = new DiaryItem(R.drawable.profile_picture, diaryTitle.getText().toString(), diaryDate.getText().toString(), spot.getText().toString(), diaryStory.getText().toString());
+        DiaryMainActivity.arrayList.add(diaryItem);
+        DiaryMainActivity.diaryAdapter.notifyDataSetChanged();
+    } */
 
     private String getRealPathFromURI(Uri contentUri) {
         if (contentUri.getPath().startsWith("/storage")) {

@@ -61,7 +61,7 @@ public class loginActivity extends AppCompatActivity {
                             SharedPreferences.Editor autoLogin = auto.edit();
                             autoLogin.putString("inputId", id.getText().toString());
                             autoLogin.putString("inputPassword", password.getText().toString());
-                            //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
+                            //꼭 commit()을 해줘야 값이 저장이 된다.
                             autoLogin.commit();
                         }
                         //Toast를 통해 환영메세지를 띄움
