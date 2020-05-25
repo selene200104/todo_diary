@@ -2,8 +2,13 @@ package com.example.todo_diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.ImageButton;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,10 +16,17 @@ import java.util.ArrayList;
 
 public class StretchingActivity extends AppCompatActivity {
 
+    private static Handler mHandler;
+
+    TextView wiseSayingText;
     int stretchingTimeMax = 6;
+    int stretchingTime = stretchingTimeMax;
     int[] stretchingTimeImgs = new int[stretchingTimeMax];
     ArrayList<String> wiseSaying = new ArrayList<>();
+    int wiseSayingPosition = 0;
+    boolean isStop;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +34,11 @@ public class StretchingActivity extends AppCompatActivity {
 
         //스트레칭 타임 이미지를 배열에 넣어줌
         for (int i = 0; i < stretchingTimeMax; i++) {
-            stretchingTimeImgs[i] = getApplicationContext().getResources().getIdentifier( "minute"+i, "drawable", "com.example.todo_diary");
+            stretchingTimeImgs[i] = getApplicationContext().getResources().getIdentifier("minute" + i, "drawable", "com.example.todo_diary");
         }
 
-        ImageView minuteImage = (ImageView) findViewById(R.id.timeImage);
-        minuteImage.setImageResource(stretchingTimeImgs[stretchingTimeMax-1]);
+        final ImageView minuteImage = (ImageView) findViewById(R.id.timeImage);
+        minuteImage.setImageResource(stretchingTimeImgs[stretchingTimeMax - 1]);
 
         //명언배열에 값을 넣어줌
         wiseSaying.add("“뛰어남이란 항상 더 잘 하려고 노력하는 데에서 나온 꾸준한 결과이다.” -Pat Riley");
@@ -40,7 +52,48 @@ public class StretchingActivity extends AppCompatActivity {
         wiseSaying.add("“모든 스트라이크는 나를 다음 홈런에 한층 더 가깝게 해준다.” -Babe Ruth");
         wiseSaying.add(" “성공하기 전에는 항상 그것이 불가능한 것처럼 보이기 마련이다.” -Nelson Mandela");
 
-        TextView wiseSayingText = (TextView) findViewById(R.id.stressText) ;
-        wiseSayingText.setText(wiseSaying.get(9));
+        wiseSayingText = (TextView) findViewById(R.id.stressText);
+        wiseSayingText.setText(wiseSaying.get(0));
+        Log.d(" StretchingActivity ", "stretching 초기세팅 " + wiseSaying.get(wiseSayingPosition));
+
+        Button startButton = (Button) findViewById(R.id.startButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(" StretchingActivity ", "스트레칭 시작버튼 누름");
+                Thread thread = new Thread(new NewRunnable());
+                thread.start();
+            }
+        });
+
+        mHandler = new Handler() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void handleMessage(Message msg) {
+                wiseSayingText.setText(wiseSaying.get(wiseSayingPosition));
+                Log.d(" StretchingActivity ", "stretching 명언 " + wiseSaying.get(wiseSayingPosition));
+            }
+        };
+    }
+
+    public class NewRunnable implements Runnable {
+        @Override
+        public void run() {
+            while (!isStop) {
+                if (wiseSayingPosition < wiseSaying.size() - 1) {
+                    Log.d(" StretchingActivity ", "버튼 누른 후 stretching 명언 " + wiseSaying.get(wiseSayingPosition));
+                    wiseSayingPosition++;
+                } else {
+                    Log.d(" StretchingActivity ", "한바퀴 돈 후 stretching 명언 " + wiseSaying.get(wiseSayingPosition));
+                    wiseSayingPosition = 0;
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendEmptyMessage(0) ;
+            }
+        }
     }
 }
