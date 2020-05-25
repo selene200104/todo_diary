@@ -13,13 +13,14 @@ public class StretchingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stretching);
 
-        int max = 5;
+        int max = 6;
         int[] imgs = new int[max];
 
         for (int i = 0; i < max; i++) {
             imgs[i] = getApplicationContext().getResources().getIdentifier( "minute"+i, "drawable", "com.example.todo_diary");
         }
+
         ImageView minuteImage = (ImageView) findViewById(R.id.timeImage);
-        minuteImage.setImageResource(imgs[0]);
+        minuteImage.setImageResource(imgs[max-1]);
     }
 }
