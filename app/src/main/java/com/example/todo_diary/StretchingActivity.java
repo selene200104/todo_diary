@@ -48,9 +48,9 @@ public class StretchingActivity extends AppCompatActivity {
         wiseSaying.add("“천리길도 한 걸음부터.” -Lao Tzu");
         wiseSaying.add("“나는 실패한 적이 없다. 그저 작동하지 않는 10,000개의 방법들을 발견했을 뿐이다.” –Thomas A. Edison");
         wiseSaying.add("“질문은 누가 나를 허락하는가가 아니라, 누가 나를 멈추게 할 것인가이다.” -Ayn Rand");
-        wiseSaying.add(" “이 세상에서 당신은 오직 당신이 잡으려고 손을 뻗은 것만을 얻는다.” -Giovanni Boccaccio");
+        wiseSaying.add("“이 세상에서 당신은 오직 당신이 잡으려고 손을 뻗은 것만을 얻는다.” -Giovanni Boccaccio");
         wiseSaying.add("“모든 스트라이크는 나를 다음 홈런에 한층 더 가깝게 해준다.” -Babe Ruth");
-        wiseSaying.add(" “성공하기 전에는 항상 그것이 불가능한 것처럼 보이기 마련이다.” -Nelson Mandela");
+        wiseSaying.add("“성공하기 전에는 항상 그것이 불가능한 것처럼 보이기 마련이다.” -Nelson Mandela");
 
         wiseSayingText = (TextView) findViewById(R.id.stressText);
         wiseSayingText.setText(wiseSaying.get(0));
