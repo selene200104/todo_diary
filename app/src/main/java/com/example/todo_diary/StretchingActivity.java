@@ -25,6 +25,9 @@ public class StretchingActivity extends AppCompatActivity {
             stretchingTimeImgs[i] = getApplicationContext().getResources().getIdentifier( "minute"+i, "drawable", "com.example.todo_diary");
         }
 
+        ImageView minuteImage = (ImageView) findViewById(R.id.timeImage);
+        minuteImage.setImageResource(stretchingTimeImgs[stretchingTimeMax-1]);
+
         //명언배열에 값을 넣어줌
         wiseSaying.add("“뛰어남이란 항상 더 잘 하려고 노력하는 데에서 나온 꾸준한 결과이다.” -Pat Riley");
         wiseSaying.add("“긴 인내 후의 실패는 충분히 노력하지 않은 것보다 훨씬 더 위대하다.” -George Eliot");
@@ -38,9 +41,6 @@ public class StretchingActivity extends AppCompatActivity {
         wiseSaying.add(" “성공하기 전에는 항상 그것이 불가능한 것처럼 보이기 마련이다.” -Nelson Mandela");
 
         TextView wiseSayingText = (TextView) findViewById(R.id.stressText) ;
-        wiseSayingText.setText(wiseSaying.get(0));
-
-        ImageView minuteImage = (ImageView) findViewById(R.id.timeImage);
-        minuteImage.setImageResource(stretchingTimeImgs[stretchingTimeMax-1]);
+        wiseSayingText.setText(wiseSaying.get(9));
     }
 }
