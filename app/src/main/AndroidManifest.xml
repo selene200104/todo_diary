@@ -12,35 +12,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TimerItem"></activity>
+        <activity android:name=".StretchingActivity"></activity>
+        <activity android:name=".TimerItem" />
         <activity android:name=".TimerExMain">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--
+<intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+
+    <category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+            -->
         </activity>
         <activity android:name=".scheduleItem" />
         <activity android:name=".DiaryItem" />
         <activity android:name=".loginActivity">
-            <!-- <intent-filter>
+
+            <!--
+             <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 
                  <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
+             </intent-filter>
+            -->
 
-         </activity>
-         <activity android:name=".MenuActivity" />
-         <activity android:name=".TodoCheckActivity" />
-         <activity android:name=".AddTodoProjectActivity" />
-         <activity android:name=".TodoMainActivity" />
-         <activity android:name=".AddScheduleActivity" />
-         <activity android:name=".ScheduleManagementMainActivity" />
-         <activity android:name=".CheckDiaryActivity" />
-         <activity android:name=".WriteDiaryActivity" />
-         <activity android:name=".DiaryMainActivity" />
-         <activity android:name=".RegisterActivity" />
-         <activity android:name=".MainActivity" />
-     </application>
+        </activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".TodoCheckActivity" />
+        <activity android:name=".AddTodoProjectActivity" />
+        <activity android:name=".TodoMainActivity" />
+        <activity android:name=".AddScheduleActivity" />
+        <activity android:name=".ScheduleManagementMainActivity" />
+        <activity android:name=".CheckDiaryActivity" />
+        <activity android:name=".WriteDiaryActivity" />
+        <activity android:name=".DiaryMainActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MainActivity" />
+    </application>
 
- </manifest>
+</manifest>
