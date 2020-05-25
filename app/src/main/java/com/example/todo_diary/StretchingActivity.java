@@ -8,19 +8,18 @@ import android.widget.ImageView;
 
 public class StretchingActivity extends AppCompatActivity {
 
+    int stretchingTimeMax = 6;
+    int[] imgs = new int[stretchingTimeMax];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stretching);
 
-        int max = 6;
-        int[] imgs = new int[max];
-
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i < stretchingTimeMax; i++) {
             imgs[i] = getApplicationContext().getResources().getIdentifier( "minute"+i, "drawable", "com.example.todo_diary");
         }
-
         ImageView minuteImage = (ImageView) findViewById(R.id.timeImage);
-        minuteImage.setImageResource(imgs[max-1]);
+        minuteImage.setImageResource(imgs[stretchingTimeMax-1]);
     }
 }
