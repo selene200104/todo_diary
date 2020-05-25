@@ -47,15 +47,15 @@
         android:id="@+id/stressText"
         android:layout_width="338dp"
         android:layout_height="wrap_content"
-        android:text=" 스트레스와 관련된 말 "
         android:gravity="center"
+        android:text=" 스트레칭과 관련된 말 "
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/titleBar"
         app:layout_constraintTop_toTopOf="@+id/titleBar"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/startButton"
