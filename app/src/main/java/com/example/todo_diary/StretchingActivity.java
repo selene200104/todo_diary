@@ -3,6 +3,7 @@ package com.example.todo_diary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,7 +25,7 @@ public class StretchingActivity extends AppCompatActivity {
     int[] stretchingTimeImgs = new int[stretchingTimeMax];
     ArrayList<String> wiseSaying = new ArrayList<>();
     int wiseSayingPosition = 0;
-    boolean isStop;
+    boolean isStopStretchingTimer,isStopWiseSaying;
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -63,6 +64,10 @@ public class StretchingActivity extends AppCompatActivity {
                 Log.d(" StretchingActivity ", "스트레칭 시작버튼 누름");
                 Thread thread = new Thread(new NewRunnable());
                 thread.start();
+
+                StretchingTimerThread timer = new StretchingTimerThread();
+                timer.start();
+                Log.d(" StretchingActivity ", "stretchingTimer 값 " + stretchingTimeMax);
             }
         });
 
@@ -72,14 +77,39 @@ public class StretchingActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 wiseSayingText.setText(wiseSaying.get(wiseSayingPosition));
                 Log.d(" StretchingActivity ", "stretching 명언 " + wiseSaying.get(wiseSayingPosition));
+
+                minuteImage.setImageResource(stretchingTimeImgs[stretchingTimeMax]);
+                Log.d(" StretchingActivity ", "stretching 시간 " + stretchingTimeMax);
             }
         };
+    }
+
+    public class StretchingTimerThread extends Thread{
+        @Override
+        public void run() {
+            while (!isStopStretchingTimer) {
+                if(stretchingTimeMax > 0){
+                    stretchingTimeMax--;
+                }else{
+                    Log.d(" StretchingActivity ", "stretchingTimer 가 종료되었습니다");
+                    stretchingTimeMax = 0;
+                    isStopWiseSaying = true;
+                    Log.d(" StretchingActivity ", "stretchingTimer 값"+stretchingTimeMax);
+                }
+                try {
+                    Thread.sleep(10000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendEmptyMessage(0) ;
+            }
+        }
     }
 
     public class NewRunnable implements Runnable {
         @Override
         public void run() {
-            while (!isStop) {
+            while (!isStopWiseSaying) {
                 if (wiseSayingPosition < wiseSaying.size() - 1) {
                     Log.d(" StretchingActivity ", "버튼 누른 후 stretching 명언 " + wiseSaying.get(wiseSayingPosition));
                     wiseSayingPosition++;
@@ -88,7 +118,7 @@ public class StretchingActivity extends AppCompatActivity {
                     wiseSayingPosition = 0;
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(3000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
