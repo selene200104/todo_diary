@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,7 +17,7 @@ public class loginActivity extends AppCompatActivity {
     EditText id, password;
     Button loginButton;
     CheckBox autoLoginCheck;
-    String loginId, loginPassword,registerEmailID,registerPassword;
+    String loginId, loginPassword,registerEmailID,registerPassword, register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +33,21 @@ public class loginActivity extends AppCompatActivity {
         SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences auto = getSharedPreferences("auto", MODE_PRIVATE);
 
-        //등록된 아이디를 login 파일에 저장함
-        registerEmailID = login.getString("registerEmailID",registerEmailID);
-        registerPassword = login.getString("registerPassword",registerPassword);
+        //register키 값을 받아와서 ","로 나눠 배열에 넣음
+        register = login.getString("register",register);
+        final String[] registerData = register.split(",");
 
+        for(int i=0;i<registerData.length;i++){
+            Log.d("등록데이터", "등록데이터 = "+registerData[i]);
+        }
+
+        //입력된 아이디를 auto 파일에 저장함
         loginId = auto.getString("inputId",null);
         loginPassword = auto.getString("inputPassword",null);
 
         //입력된 정보가 등록된 id및 비밀번호와 같다면 자동 로그인이 됌
         if(loginId != null && loginPassword != null) {
-            if(loginId.equals(registerEmailID) && loginPassword.equals(registerPassword)) {
+            if(loginId.equals(registerData[0]) && loginPassword.equals(registerData[1])) {
                 Toast.makeText(loginActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(loginActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -55,7 +61,7 @@ public class loginActivity extends AppCompatActivity {
                 //아이디와 비밀번호 칸이 비어있지 않을 때
                 if(!id.getText().toString().equals("") && !password.getText().toString().equals("")) {
                     //아이디와 비밀번호에 입력된 값이 미리 지정되어있는 값과 같으면 로그인이 됌.
-                    if (id.getText().toString().equals(registerEmailID) && password.getText().toString().equals(registerPassword)) {
+                    if (id.getText().toString().equals(registerData[0]) && password.getText().toString().equals(registerData[1])) {
                         if(autoLoginCheck.isChecked()) {
                             SharedPreferences auto = getSharedPreferences("auto", AppCompatActivity.MODE_PRIVATE);
                             SharedPreferences.Editor autoLogin = auto.edit();

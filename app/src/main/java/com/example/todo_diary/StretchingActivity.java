@@ -3,13 +3,16 @@ package com.example.todo_diary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,8 +25,10 @@ public class StretchingActivity extends AppCompatActivity {
     TextView wiseSayingText;
     int stretchingTimeCount = 0;
     int stretchingTimeMax = 6;
+    int stretchingpos = 0;
     int stretchingTime = stretchingTimeMax;
     int[] stretchingTimeImgs = new int[stretchingTimeMax];
+    int[] stretchingImgs = new int[15];
     ArrayList<String> wiseSaying = new ArrayList<>();
     int wiseSayingPosition = 0;
     boolean isStopStretchingTimer ;
@@ -59,6 +64,13 @@ public class StretchingActivity extends AppCompatActivity {
         wiseSayingText.setText(wiseSaying.get(0));
         Log.d(" StretchingActivity ", "stretching 초기세팅 " + wiseSaying.get(wiseSayingPosition));
 
+        final ImageView stretchingImage = (ImageView) findViewById(R.id.stretchingImage);
+        //스트레칭 이미지를 배열에 넣어줌
+        for (int i = 0; i < 15; i++) {
+            stretchingImgs[i] = getApplicationContext().getResources().getIdentifier("stretchingpos" + i, "drawable", "com.example.todo_diary");
+        }
+
+        //스트레칭 시작 버튼
         final Button startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +82,34 @@ public class StretchingActivity extends AppCompatActivity {
 
                 StretchingTimerThread timer = new StretchingTimerThread();
                 timer.start();
+
+                StretchingImageChangeThread stretchingImageChange = new StretchingImageChangeThread();
+                stretchingImageChange.start();
                 //Log.d(" StretchingActivity ", "stretchingTimer 값 " + stretchingTimeMax);
+            }
+        });
+
+        //스트레칭 재시작 버튼
+        final Button restartButton = (Button) findViewById(R.id.restartButton);
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StretchingActivity.this, StretchingActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        });
+
+        //메뉴 이미지를 누르면 메인 액티비티로 이동
+        ImageButton Home = (ImageButton)findViewById(R.id.menuButton);
+        Home.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // 액티비티 전환 코드
+                Intent intent = new Intent(StretchingActivity.this, MainActivity.class);
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -84,8 +123,12 @@ public class StretchingActivity extends AppCompatActivity {
                 minuteImage.setImageResource(stretchingTimeImgs[stretchingTimeMax]);
                 Log.d(" StretchingActivity ", "stretching 시간 " + stretchingTimeMax);
 
+                stretchingImage.setImageResource(stretchingImgs[stretchingpos]);
+                Log.d(" StretchingActivity ", "stretching 시간 " + stretchingpos);
+
                 if(stretchingTimeMax == 0) {
-                    startButton.setVisibility(View.VISIBLE);
+                    restartButton.setVisibility(View.VISIBLE);
+                    stretchingImage.setImageResource(R.drawable.stretchingend);
                 }
             }
         };
@@ -130,6 +173,22 @@ public class StretchingActivity extends AppCompatActivity {
                 }
                 try {
                     Thread.sleep(3000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendEmptyMessage(0) ;
+            }
+        }
+    }
+
+    public class StretchingImageChangeThread extends Thread{
+        @Override
+        public void run() {
+            while (stretchingTimeCount < 6) {
+                stretchingpos++;
+                Log.d(" StretchingActivity ", "stretchingpos 쓰레드 값 :"+stretchingpos);
+                try {
+                    Thread.sleep(4000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

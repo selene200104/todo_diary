@@ -4,7 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimerExMain">
+    tools:context=".TimerActivity">
+
+    <View
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="MenuBar logo"
+        android:scaleType="centerInside"
+        android:src="@drawable/menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/todo"
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <TextView
+        android:id="@+id/stopwatchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 스톱워치 "
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titleBar"
+        app:layout_constraintTop_toTopOf="@+id/titleBar"
+        app:layout_constraintVertical_bias="0.475" />
 
     <TextView
         android:id="@+id/hour"
@@ -138,9 +176,9 @@
 
     <ListView
         android:id="@+id/record"
-        android:layout_width="390dp"
-        android:layout_height="320dp"
-        android:layout_margin="10dp"
+        android:layout_width="361dp"
+        android:layout_height="277dp"
+        android:layout_margin="20dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

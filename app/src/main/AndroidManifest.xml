@@ -13,24 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".StretchingActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".TimerItem" />
-        <activity android:name=".TimerExMain">
-            <!--
-<intent-filter>
+        <activity android:name=".TimerActivity">
+<!--<intent-filter>
     <action android:name="android.intent.action.MAIN" />
 
     <category android:name="android.intent.category.LAUNCHER" />
-</intent-filter>
-            -->
+</intent-filter>-->
         </activity>
         <activity android:name=".scheduleItem" />
         <activity android:name=".DiaryItem" />
-        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".loginActivity">
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".TodoCheckActivity" />
         <activity android:name=".AddTodoProjectActivity" />

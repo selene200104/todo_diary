@@ -87,13 +87,29 @@
 
     <ListView
         android:id="@+id/todoProjectList"
-        android:layout_width="393dp"
-        android:layout_height="524dp"
+        android:layout_width="396dp"
+        android:layout_height="386dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleBar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.483" />
+
+    <TextView
+        android:id="@+id/stressText"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=" 스트레칭과 관련된 말 "
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/titleBar"
+        app:layout_constraintTop_toTopOf="@+id/titleBar"
+        app:layout_constraintVertical_bias="0.914" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

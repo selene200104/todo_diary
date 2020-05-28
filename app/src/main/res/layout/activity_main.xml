@@ -55,8 +55,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_width="377dp"
+        android:layout_height="246dp"
         android:layout_margin="10dp">
 
         <ImageView
@@ -69,9 +69,10 @@
             android:src="@drawable/profile_picture"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.409"
+            app:layout_constraintVertical_bias="0.252"
             tools:srcCompat="@tools:sample/avatars[3]" />
 
         <TextView
@@ -84,10 +85,10 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.546"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.918" />
+            app:layout_constraintVertical_bias="0.873" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -137,23 +138,24 @@
 
         <ImageButton
             android:id="@+id/goScheduleButton"
-            android:layout_width="100dp"
-            android:layout_height="114dp"
+            android:layout_width="82dp"
+            android:layout_height="78dp"
             android:layout_margin="10dp"
-            android:layout_marginStart="16dp"
             android:background="@android:color/transparent"
             android:contentDescription="schedule icon"
             android:scaleType="centerInside"
             android:src="@drawable/calendar"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textScheduleManagement"
-            app:layout_constraintVertical_bias="0.065" />
+            app:layout_constraintVertical_bias="0.067" />
 
         <ImageButton
             android:id="@+id/goToDoListButton"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
+            android:layout_width="91dp"
+            android:layout_height="83dp"
             android:layout_margin="10dp"
             android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
@@ -162,15 +164,15 @@
             android:src="@drawable/todolist"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/goDiaryButton"
-            app:layout_constraintHorizontal_bias="0.614"
+            app:layout_constraintHorizontal_bias="0.59"
             app:layout_constraintStart_toEndOf="@+id/goScheduleButton"
             app:layout_constraintTop_toBottomOf="@+id/textTodo"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintVertical_bias="0.059" />
 
         <ImageButton
             android:id="@+id/goDiaryButton"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
+            android:layout_width="98dp"
+            android:layout_height="77dp"
             android:layout_margin="10dp"
             android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
@@ -183,6 +185,66 @@
             app:layout_constraintStart_toEndOf="@+id/goScheduleButton"
             app:layout_constraintTop_toBottomOf="@+id/textDiary"
             app:layout_constraintVertical_bias="0.077" />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
+            android:gravity="center"
+            android:text=" 타이머 "
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.229"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/goTimerButton"
+            android:layout_width="97dp"
+            android:layout_height="69dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="diary icon"
+            android:scaleType="centerInside"
+            android:src="@drawable/timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.185"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.948" />
+
+        <TextView
+            android:id="@+id/stretching"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
+            android:gravity="center"
+            android:text=" 스트레칭 "
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.79"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/goStretchingButton"
+            android:layout_width="98dp"
+            android:layout_height="77dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="diary icon"
+            android:scaleType="centerInside"
+            android:src="@drawable/stretchingbuttonimage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.789"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDiary"
+            app:layout_constraintVertical_bias="0.988" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,13 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,6 +88,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 액티비티 전환 코드
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //타이머 이미지를 누르면 타이머 액티비티로 이동
+        ImageButton timer = (ImageButton)findViewById(R.id.goTimerButton);
+        timer.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // 액티비티 전환 코드
+                Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //스트레칭 이미지를 누르면 스트레칭 액티비티로 이동
+        ImageButton stretching = (ImageButton)findViewById(R.id.goStretchingButton);
+        stretching.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // 액티비티 전환 코드
+                Intent intent = new Intent(MainActivity.this, StretchingActivity.class);
                 startActivity(intent);
             }
         });
